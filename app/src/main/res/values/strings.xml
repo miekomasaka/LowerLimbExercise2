@@ -1,0 +1,96 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="app_name">LowerLimbExercise</string>
+    <string name="intro_message">
+        <![CDATA[
+
+
+            This application allows two Android devices to carry out two-way text chat over
+            Bluetooth. It demonstrates all the fundamental Bluetooth API capabilities, such as:
+              (1) Scanning for other Bluetooth devices
+              (2) Querying the local Bluetooth adapter for paired Bluetooth devices
+              (3) Establishing RFCOMM channels/sockets
+              (4) Connecting to a remote device
+              (5) Transferring data over Bluetooth
+
+
+        ]]>
+    </string>
+
+    <string name="tvContent">内容</string>
+    <string name="tvPrice">金額</string>
+    <string name="tvDate">日付</string>
+    <string name="tvTo">～</string>
+    <string name="tvDisplayStartDate">表示開始日指定</string>
+    <string name="tvDisplayEndDate">表示終了日指定</string>
+    <string name="btnRegistData">運動履歴を見る</string>
+    <string name="btnStart">センサを接続する</string>
+    <string name="btnexStart">運動開始</string>
+    <string name="btnexLeft">左</string>
+    <string name="btnexRight">右</string>
+    <string name="btnUpdateData">データ更新</string>
+    <string name="btnSetDate">日付設定</string>
+    <string name="noticeInputName">※名前を入力してください。</string>
+    <string name="inputOnlyNumber">※数値のみを入力してください。</string>
+    <string name="InputMaxPrice">※金額は「2,147,483,647」円までの範囲で入力してください。</string>
+    <string name="selectTask">処理選択</string>
+    <string name="askingTaskType">どの処理を実行しますか？</string>
+    <string name="edit">編集</string>
+    <string name="year">年</string>
+    <string name="month">月</string>
+    <string name="day">日</string>
+    <string name="delete">削除</string>
+    <string name="priceUnit">円</string>
+    <string name="priceSum">合計：</string>
+    <string name="selectFutureDate">※表示開始日が表示終了日より未来の日付に設定されています。</string>
+    <string name="selectPastDate">※表示終了日が表示開始日より過去の日付に設定されています。</string>
+    <string name="canNotGetData">データが取得できません。</string>
+    <string name="successRegistData">データを登録しました。</string>
+    <string name="canNotAddData">データが登録できません。</string>
+    <string name="successUpdateData">データを更新しました。</string>
+    <string name="canNotUpdateData">データが更新できません。</string>
+    <string name="successDeleteData">データを削除しました。</string>
+    <string name="canNotDeleteData">データが削除できません。</string>
+    <string name="title_activity_top">TopActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--  BluetoothChat -->
+    <string name="send">センサを接続する</string>
+    <string name="not_connected">You are not connected to a device</string>
+    <string name="bt_not_enabled_leaving">Bluetooth was not enabled. Leaving Bluetooth Chat.</string>
+    <string name="title_connecting">connecting...</string>
+    <string name="title_connected_to">connected to <xliff:g id="device_name">%1$s</xliff:g></string>
+    <string name="title_not_connected">not connected</string>
+
+    <!--  DeviceListActivity -->
+    <string name="scanning">scanning for devices...</string>
+    <string name="select_device">select a device to connect</string>
+    <string name="none_paired">No devices have been paired</string>
+    <string name="none_found">No devices found</string>
+    <string name="title_paired_devices">Paired Devices</string>
+    <string name="title_other_devices">Other Available Devices</string>
+    <string name="button_scan">Scan for devices</string>
+
+    <!-- Options Menu -->
+    <string name="secure_connect">Connect a device - Secure</string>
+    <string name="insecure_connect">Connect a device - Insecure</string>
+    <string name="discoverable">Make discoverable</string>
+    <string name="sample_show_log">sample show log</string>
+    <string name="sample_hide_log">sample hide log</string>
+
+    <!-- Toppage Menu  -->
+    <string name="menu_item1">デバイス設定</string>
+    <string name="menu_item2">曲の設定</string>
+    <string name="menu_item3">センサ設定</string>
+
+
+</resources>

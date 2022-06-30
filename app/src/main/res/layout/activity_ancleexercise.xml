@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activityAncleTrainMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".AncleExerciseActivity">
+    </FrameLayout>
+    <ViewAnimator
+        android:id="@+id/sample_output"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="0">
+
+        <ScrollView
+            style="@style/Widget.SampleMessageTile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                style="@style/Widget.SampleMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/horizontal_page_margin"
+                android:paddingTop="@dimen/vertical_page_margin"
+                android:paddingRight="@dimen/horizontal_page_margin"
+                android:paddingBottom="@dimen/vertical_page_margin"
+                android:text="@string/intro_message" />
+        </ScrollView>
+
+
+    </ViewAnimator>
+
+    <fragment
+    android:id="@+id/fragment_bluetooth_chat"
+    android:name="com.example.lowerlimbexercise.BluetoothChatFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1" />
+
+
+</LinearLayout>
