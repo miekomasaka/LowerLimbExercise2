@@ -63,7 +63,7 @@ public class MainActivity2 extends AccountUtilities {
                 case R.id.item1:
                     break;
                 case R.id.item2:
-                    final String[] items = {"Milkeyway", "short", "item_2"};  //本来は、構造体としてどこかに保管しておく
+                    final String[] items = {"Milkeyway", "short", "Milkeyway-consts"};  //本来は、構造体としてどこかに保管しておく
                     int defaultItem = 0; // デフォルトでチェックされているアイテム
                     final List<Integer> checkedItems = new ArrayList<>();
                     checkedItems.add(defaultItem);
