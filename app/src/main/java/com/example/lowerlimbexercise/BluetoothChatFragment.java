@@ -314,8 +314,10 @@ public class BluetoothChatFragment extends Fragment {
             }
 
             if(message.equals("初期値取得")){
-              if(!(mChatServicerighttoe == null)) mChatServicerighttoe.setInitalPosition();
-                if(!(mChatServicelefttoe == null)) mChatServicelefttoe.setInitalPosition();
+              //多分なくて大丈夫
+
+                // if(!(mChatServicerighttoe == null)) mChatServicerighttoe.setInitalPosition();
+                //if(!(mChatServicelefttoe == null)) mChatServicelefttoe.setInitalPosition();
             }
             if(message.equals("初期値取得終了")){
                 if(!(mChatServicerighttoe == null)) mChatServicerighttoe.InitalPositionfinish();
@@ -396,6 +398,7 @@ public class BluetoothChatFragment extends Fragment {
         public void handleMessage(Message msg) {
             //System.out.println("++BluetoothChatFragment::handleMessage(msg.what="+msg.what+",msg.arg1="+msg.arg1+")");
             FragmentActivity activity = getActivity();
+
             switch (msg.what) {
                 case Constants.MESSAGE_STATE_CHANGE:
                     switch (msg.arg1) {
@@ -419,7 +422,13 @@ public class BluetoothChatFragment extends Fragment {
                     mConversationArrayAdapter.add("Me:  " + writeMessage);
                     break;
                 case Constants.MESSAGE_READ:
-                    //BluetoothChatServiceに移動
+                    //移動角度取得
+                    if (msg.arg1 == devicenumber_righttoe) {
+                        ((AncleExerciseActivity) activity).setMoveangle(devicenumber_righttoe, mChatServicerighttoe.getMmoveangle(devicenumber_righttoe));
+                    }
+                    else {
+                        ((AncleExerciseActivity) activity).setMoveangle(devicenumber_lefttoe, mChatServicelefttoe.getMmoveangle(devicenumber_lefttoe));
+                    }
                     break;
                 case Constants.MESSAGE_DEVICE_NAME:
                     // save the connected device's name
@@ -431,21 +440,14 @@ public class BluetoothChatFragment extends Fragment {
                     break;
 
                 case Constants.MESSAGE_CLICK:
-
-
-                    //底屈のピークを取得した
-                    FragmentActivity factivity = getActivity();
                     if (null == activity) {
                         return;
                     }
                     if (msg.arg1 == devicenumber_righttoe) {
-                        //移動角度取得
-                        ((AncleExerciseActivity) factivity).setMoveangle(devicenumber_righttoe,mChatServicerighttoe.getMmoveangle(devicenumber_righttoe));
-                        ((AncleExerciseActivity) factivity).rightAncleClick();
+                         ((AncleExerciseActivity) activity).rightAncleClick(msg.arg2);
                     }
                     if (msg.arg1 == devicenumber_lefttoe){
-                        ((AncleExerciseActivity) factivity).setMoveangle(devicenumber_lefttoe,mChatServicelefttoe.getMmoveangle(devicenumber_lefttoe));
-                        ((AncleExerciseActivity)factivity).leftAncleClick();
+                       ((AncleExerciseActivity)activity).leftAncleClick(msg.arg2);
                     }
 
                     break;

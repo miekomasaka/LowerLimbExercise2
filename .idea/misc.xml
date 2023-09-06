@@ -4,7 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/OriginalPrograms/LowerLimbExercise/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1755" />
+        <entry key="..\:/OriginalPrograms/LowerLimbExercise/app/src/main/res/drawable/button_style_1.xml" value="0.1" />
+        <entry key="..\:/OriginalPrograms/LowerLimbExercise/app/src/main/res/drawable/button_style_2.xml" value="0.1" />
         <entry key="..\:/OriginalPrograms/LowerLimbExercise/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1755" />
+        <entry key="..\:/OriginalPrograms/LowerLimbExercise/app/src/main/res/drawable/progress2.xml" value="0.1" />
+        <entry key="..\:/OriginalPrograms/LowerLimbExercise/app/src/main/res/drawable/progresspic.xml" value="0.1" />
         <entry key="..\:/OriginalPrograms/LowerLimbExercise/app/src/main/res/layout/activity_ancleecrcisemenu.xml" value="0.25703125" />
         <entry key="..\:/OriginalPrograms/LowerLimbExercise/app/src/main/res/layout/activity_ancleexercise.xml" value="0.1" />
         <entry key="..\:/OriginalPrograms/LowerLimbExercise/app/src/main/res/layout/activity_ancleexercisefinnished.xml" value="0.12683313515655964" />
@@ -29,13 +33,15 @@
         <entry key="..\:/OriginalPrograms/LowerLimbExercise/app/src/main/res/layout/fragment_mountdevice.xml" value="0.14963325183374082" />
         <entry key="..\:/OriginalPrograms/LowerLimbExercise/app/src/main/res/layout/fragment_second.xml" value="0.12683313515655964" />
         <entry key="..\:/OriginalPrograms/LowerLimbExercise/app/src/main/res/layout/fragment_sub2.xml" value="0.13555291319857313" />
+        <entry key="..\:/OriginalPrograms/LowerLimbExercise/app/src/main/res/layout/progress2.xml" value="0.1" />
+        <entry key="..\:/OriginalPrograms/LowerLimbExercise/app/src/main/res/layout/progresspicr.xml" value="0.1178484107579462" />
         <entry key="..\:/OriginalPrograms/LowerLimbExercise/app/src/main/res/layout/regist_account_data.xml" value="0.13277843836702338" />
         <entry key="..\:/OriginalPrograms/LowerLimbExercise/app/src/main/res/menu/bluetooth_chat.xml" value="0.12683313515655964" />
         <entry key="..\:/OriginalPrograms/LowerLimbExercise/app/src/main/res/menu/toppagemenu.xml" value="0.12683313515655964" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="jbr-17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

@@ -640,17 +640,21 @@ public class BluetoothChatService {
                 }
 
                 angle[mdevicenumber] = getRotationY(readdatasetbuffer);    //ピッチ（Y軸回転角度）計算
+                mmoveangle[mdevicenumber] =  mstandPositionY[mdevicenumber] - mlastangleY[mdevicenumber] ;
+                mHandler.obtainMessage(Constants.MESSAGE_READ, mdevicenumber, -1, buffer)
+                        .sendToTarget();
+                //System.out.println("MESSAGE_READ mmoveangle=" + mmoveangle[mdevicenumber] + "mdevicenumber=" + mdevicenumber);
                 //double anglarvelocity = getangularvelocityY(readdatasetbuffer); //Y軸角速度から移動方向を収集
 
 
                 //System.out.println("angle=" + angle[mdevicenumber] +"mdirection="+mdirection[mdevicenumber]+",StamdPosition="+mstandPositionY[mdevicenumber]+",devicenum=" + mdevicenumber);
 
 
-                //移動方向が底屈方向で、Y軸回転角度が前回値より大きくなったらclickメッセージ発行   ***ここを直す必要あり（どちらのデバイスかをちゃんとチェック）
+                //移動方向が底屈方向で、Y軸回転角度が前回値より大きくなったらclickメッセージ発行
                 if((mdirection[mdevicenumber] == DIRECTION_FLEXION) && ((mlastangleY[mdevicenumber]-angle[mdevicenumber] ) < 0)){
                     // Share the sent message back to the UI Activity
                     mmoveangle[mdevicenumber] =  mstandPositionY[mdevicenumber] - mlastangleY[mdevicenumber] ;
-                    mHandler.obtainMessage(Constants.MESSAGE_CLICK, mdevicenumber, -1, buffer)
+                    mHandler.obtainMessage(Constants.MESSAGE_CLICK, mdevicenumber,(int)mmoveangle[mdevicenumber], buffer)
                             .sendToTarget();
                     mstandPositionY[mdevicenumber] = angle[mdevicenumber] ;
                     System.out.println("MESSAGE_CLICK mmoveangle=" + mmoveangle[mdevicenumber] + "mdevicenumber=" + mdevicenumber);

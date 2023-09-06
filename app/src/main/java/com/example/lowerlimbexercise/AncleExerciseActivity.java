@@ -1,14 +1,12 @@
 package com.example.lowerlimbexercise;
 
-import static com.example.lowerlimbexercise.AccountUtilities.getCalendar;
-import static com.example.lowerlimbexercise.AccountUtilities.setDatabaseHelper;
 import static com.example.lowerlimbexercise.BluetoothChatFragment.devicenumber_lefttoe;
 import static com.example.lowerlimbexercise.BluetoothChatFragment.devicenumber_righttoe;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.widget.ProgressBar;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,15 +14,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
 public class AncleExerciseActivity extends AppCompatActivity implements MountDeviceFragment.MountDeviceFragmentListener, AncleExRadyFragment.AncleExRadyFragmentListener ,AncleExerciseFragment.AncleExerciseFragmentListener, AncleExFinnishFragment.AncleExFinnishFragmentListener {
 
     private double moveanglelefttoe;
     private double moveanglerighttoe;
     public AncleexData mad;
+    public int mmovePeekAngler;
+    public int mmovePeekAnglel;
+
 
     SharedPreferences sharedPref;
 
@@ -117,17 +114,19 @@ public class AncleExerciseActivity extends AppCompatActivity implements MountDev
     }
 
     //右つま先底屈検知
-    public void rightAncleClick(){
+    public void rightAncleClick(int moveangle){
        Fragment fragment = getSupportFragmentManager().findFragmentByTag("AncleExerciseFragment");
-       if(fragment != null )((AncleExerciseFragment)fragment).setrightAncleclicke();
+       mmovePeekAngler = moveangle;
+       if(fragment != null )((AncleExerciseFragment)fragment).setrightAncleclicke(mmovePeekAngler);
 
     }
 
 
     //左つま先底屈検知
-    public void leftAncleClick(){
+    public void leftAncleClick(int moveangle){
         Fragment fragment = getSupportFragmentManager().findFragmentByTag("AncleExerciseFragment");
-        if(fragment != null )((AncleExerciseFragment)fragment).setleftAncleclicke();
+        mmovePeekAnglel = moveangle;
+        if(fragment != null )((AncleExerciseFragment)fragment).setleftAncleclicke(mmovePeekAnglel);
 
     }
 

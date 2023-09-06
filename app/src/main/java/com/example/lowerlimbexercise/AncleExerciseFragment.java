@@ -27,8 +27,10 @@ import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.media.AudioManager;
+import android.widget.SeekBar;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -63,6 +65,8 @@ public class AncleExerciseFragment extends Fragment implements Animator.Animator
 
 
     private AncleexData mad;
+    private int mmovepeekanglel;
+    private int mmovepeekangler;
     //アニメーション用変数
     private ImageView judgeImage;
     private ImageView judgeImager;
@@ -72,6 +76,8 @@ public class AncleExerciseFragment extends Fragment implements Animator.Animator
 
     public Button buttonGood ;
     public Button buttonGoodr ;
+    public ProgressBar progressbarl;
+    public ProgressBar progressbarr;
 
     private  FrameLayout mlayoutl;
     private  FrameLayout mlayoutr;
@@ -117,10 +123,14 @@ public class AncleExerciseFragment extends Fragment implements Animator.Animator
                 "test"
         );
 
+        mmovepeekanglel = 0;
+        mmovepeekangler = 0;
 
         Button buttonStart = view.findViewById(R.id.button_start);
          buttonGood = view.findViewById(R.id.button_good);
          buttonGoodr = view.findViewById(R.id.button3);
+         progressbarl = view.findViewById(R.id.progressBar);
+         progressbarr = view.findViewById(R.id.progressBarr);
 
 
         //中央下側の足のイラストを描画
@@ -270,6 +280,7 @@ public class AncleExerciseFragment extends Fragment implements Animator.Animator
                 //setAnimation();
             }
         });
+
 
         //スタートボタンを押下を疑似的に発行
         buttonStart.performClick();
@@ -565,6 +576,14 @@ public class AncleExerciseFragment extends Fragment implements Animator.Animator
         //全チャンネル分を処理 →　左足の処理
         //for(int j = 0; j<6; j++){　　
         int j= 0;
+        // 所属親アクティビティを取得
+        AncleExerciseActivity activity = (AncleExerciseActivity) getActivity();
+        int moveanglel = (int)activity.getMoveangle(devicenumber_lefttoe);
+        int moveangler = (int)activity.getMoveangle(devicenumber_righttoe);
+        //プログレスバーに値を反映
+        setProgressl(moveanglel);
+        setProgressr(moveangler);
+
         for(int i=iStartNum[j+0x11+0x20]; i<bms.GetObjectNum(0x11+j);i++) {
             BMSDATA b=bms.GetObje(0x11+j,i);
             //System.out.println("j="+j+" i="+i+" lTime="+b.lTime+" now_count="+now_count);
@@ -595,33 +614,56 @@ public class AncleExerciseFragment extends Fragment implements Animator.Animator
                     int jadge = 0;
                     if(sub<= GREAT_RANGE) {
                         jadge = 3;
-                        mad.count_best_l ++;
-                        System.out.println("L GREAT!");
+
                     }else if(sub <= GOOD_RANGE) {
                         jadge = 2;
-                        mad.count_over_l++;
-                        System.out.println("L GOOD!");
+
 
                     }else if(sub <= BAD_RANGE){
                         jadge = 1;
-                        mad.count_under_l++;
-                        System.out.println("L BAD!");
+
                     }
 
                     if(jadge >= 1){
-                        // 所属親アクティビティを取得
-                        AncleExerciseActivity activity = (AncleExerciseActivity) getActivity();
-                        int moveangle = (int)activity.getMoveangle(devicenumber_lefttoe);
 
-                        int angle = 0;
 
-                        if(moveangle <=10)angle = 0;
-                        else if(moveangle <=20)angle = 1;
-                        else if(moveangle <= 30)angle = 2;
-                        else if(moveangle <=40)angle = 3;
-                        if(moveangle > 40)angle = 4;
-                        //花火を表示
-                        effect(devicenumber_lefttoe,jadge,angle);
+                        int anglejadge = 0;
+
+                       /* if(moveanglel <=10)angle = 0;
+                        else if(moveanglel <=20)angle = 1;
+                        else if(moveanglel <= 30)angle = 2;
+                        else if(moveanglel <=40)angle = 3;
+                        if(moveanglel > 40)angle = 4;*/
+
+                        //最大底屈角度で比較する
+                        if(mmovepeekanglel <=10){
+                            anglejadge = 0;
+                            mad.count_under_l++;
+                            System.out.println("L BAD!");
+                        }
+                        else if(mmovepeekanglel <=20){
+                            anglejadge = 1;
+                            mad.count_best_l ++;
+                            System.out.println("L GREAT!");
+                        }
+                        else if(mmovepeekanglel <= 30){
+                            anglejadge = 2;
+                            mad.count_best_l ++;
+                            System.out.println("L GREAT!");
+                        }
+                        else if(mmovepeekanglel <=40){
+                            anglejadge = 3;
+                            mad.count_over_l++;
+                            System.out.println("L GOOD!");
+                        }
+                        if(mmovepeekanglel > 40){
+                            anglejadge = 4;
+                            mad.count_over_l++;
+                            System.out.println("L GOOD!");
+                        }
+                        // 花火を表示
+                        System.out.println("mmovepeekanglel="+mmovepeekanglel+"anglejadge="+anglejadge);
+                        effect(devicenumber_lefttoe,jadge,anglejadge);
 
                         //オブジェクトを処理
                         b.bFlag = FALSE;
@@ -671,34 +713,59 @@ public class AncleExerciseFragment extends Fragment implements Animator.Animator
                     int jadge = 0;
                     if(sub<= GREAT_RANGE) {
                         jadge = 3;
-                        mad.count_best_r ++;
-                        System.out.println("R GREAT! j="+j+" i="+i+" lTime="+b.lTime+" now_count="+now_count);
+
                     }else if(sub <= GOOD_RANGE) {
                         jadge = 2;
-                        mad.count_over_r ++;     //判定方法変更
-                        System.out.println("R GOOD! j="+j+" i="+i+" lTime="+b.lTime+" now_count="+now_count);
+
 
                     }else if(sub <= BAD_RANGE){
                         jadge = 1;
-                        mad.count_under_r ++;
-                        System.out.println("R BAD! j="+j+" i="+i+" lTime="+b.lTime+" now_count="+now_count);
+
                     }
 
                     if(jadge >= 1){
-                        // 所属親アクティビティを取得
-                        AncleExerciseActivity activity = (AncleExerciseActivity) getActivity();
-                        int moveangle = (int)activity.getMoveangle(devicenumber_righttoe);
 
-                        int angle = 0;
 
-                        if(moveangle <=10)angle = 0;
-                        else if(moveangle <=20)angle = 1;
-                        else if(moveangle <= 30)angle = 2;
-                        else if(moveangle <=40)angle = 3;
-                        if(moveangle > 40)angle = 4;
+                        int anglejadge = 0;
 
-                        //花火を表示
-                        effect(devicenumber_righttoe,jadge,angle);
+                        /*if(moveangler <=10)angle = 0;
+                        else if(moveangler <=20)angle = 1;
+                        else if(moveangler <= 30)angle = 2;
+                        else if(moveangler <=40)angle = 3;
+                        if(moveangler > 40)angle = 4;*/
+
+                        //最大底屈角度で比較する
+                        if(mmovepeekangler <=10){
+                            anglejadge = 0;
+
+                            mad.count_under_r ++;
+                            System.out.println("R BAD! j="+j+" i="+i+" lTime="+b.lTime+" now_count="+now_count);
+                        }
+                        else if(mmovepeekangler <=20){
+                            anglejadge = 1;
+                            mad.count_best_r ++;
+                            System.out.println("R GREAT! j="+j+" i="+i+" lTime="+b.lTime+" now_count="+now_count);
+                        }
+                        else if(mmovepeekangler <= 30){
+                            anglejadge = 2;
+                            mad.count_best_r ++;
+                            System.out.println("R GREAT! j="+j+" i="+i+" lTime="+b.lTime+" now_count="+now_count);
+                        }
+                        else if(mmovepeekangler <=40){
+                            anglejadge = 3;
+                            mad.count_over_r ++;     //判定方法変更
+                            System.out.println("R GOOD! j="+j+" i="+i+" lTime="+b.lTime+" now_count="+now_count);
+                        }
+                        if(mmovepeekangler > 40) {
+                            anglejadge = 4;
+                            mad.count_over_r ++;     //判定方法変更
+                            System.out.println("R GOOD! j="+j+" i="+i+" lTime="+b.lTime+" now_count="+now_count);
+                        }
+
+                        // 花火を表示
+                        System.out.println("mmovepeekangler="+mmovepeekangler+"anglejadge="+anglejadge);
+                        effect(devicenumber_righttoe,jadge,anglejadge);
+
 
                         //オブジェクトを処理
                         b.bFlag = FALSE;
@@ -989,12 +1056,16 @@ public class AncleExerciseFragment extends Fragment implements Animator.Animator
 
     }
 
-    public void setrightAncleclicke(){
+    public void setrightAncleclicke(int movepeekangle){
+        System.out.println("++AncleExerciseFragment::setrightAncle()");
+        mmovepeekangler = movepeekangle;
         buttonGoodr.performClick();
 
     }
 
-    public void setleftAncleclicke(){
+    public void setleftAncleclicke(int movepeekangle){
+        System.out.println("++AncleExerciseFragment::setkeftAncle()");
+        mmovepeekanglel = movepeekangle;
         buttonGood.performClick();
 
     }
@@ -1020,5 +1091,14 @@ public class AncleExerciseFragment extends Fragment implements Animator.Animator
         ad.count_under_l = mad.count_under_l;
         ad.count_under_r = mad.count_under_r;
         ad.duration = mad.duration;
+    }
+
+    public void setProgressl(int val){
+        System.out.println("AncleExrciseFragment::setProgressl("+val+")");
+        progressbarl.setProgress(val); // 水平プログレスバーの値を設定
+    }
+
+    public void setProgressr(int val){
+        progressbarr.setProgress(val);
     }
 }
