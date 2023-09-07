@@ -126,7 +126,8 @@ public class MainActivity2 extends AccountUtilities {
 
         //デバッグ用に初期値を入れておく　・・最終的には削除する
         SharedPreferences.Editor editor= sharedPref.edit();
-        editor.putString("sensor_righttoe","00:07:80:48:0E:D6");
+        //editor.putString("sensor_righttoe","00:07:80:48:0E:D6");
+        editor.putString("sensor_righttoe","00:07:80:48:0C:28");
         editor.commit();
         editor.putString("sensor_lefttoe","00:07:80:48:0C:80");
         editor.commit();
